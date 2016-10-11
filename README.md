@@ -1,5 +1,5 @@
-# SpanBuilderDemo
-生成各种样式的span
+# SpanBuilder
+##一个TextView可设置如下的效果
 # 使用说明：
 ##用法 1：拼接TextSetting对象,可设置某某内容字体大小、颜色
 ![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
@@ -13,11 +13,12 @@ SpanBuilder spanBuilder = new SpanBuilder()
     .append(new TextSetting("这是", 12, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
     .append(new TextSetting("特殊的", 25, ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)))
     .append(new TextSetting("内容\n", 18, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
-    
+
 textView.setText(spanBuilder);
 ```
 ##用法 2：拼接Span对象（单一样式、混合样式）
 ###2.1之单一样式：
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.1.png)
 ```
 SpanBuilder spanBuilder = new SpanBuilder()
     .append(SpanBuilder.getBackgroundColorSpan("这是背景颜色\n", Color.RED))
@@ -48,6 +49,7 @@ textView.setText(spanBuilder);
 ```
 ###2.2之混合样式：（一次合成、在原来样式上添加）
 ####2.2.1一次合成：
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.1.png)
 ```
 SpannableString span =SpanBuilder.getSpan("一次生成混合体，设置了红色字体、删除线、斜体加粗\n",
                                 new ForegroundColorSpan(Color.RED),//字体红色
@@ -59,6 +61,7 @@ textView.setText(span);
 ```
 ####2.2.2在原来样式上添加：（作用于全部、作用于部分内容）
 #####2.2.2.1新样式作用于全部内容：
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.2.1.png)
 ```
 SpannableString underLineSpan = SpanBuilder.getUnderLineSpan(
                                                 "在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n");
@@ -69,6 +72,7 @@ SpanBuilder.addSpanStyleAll(underLineSpan, new ForegroundColorSpan(Color.BLUE), 
 textView.setText(underLineSpan);
 ```
 #####2.2.2.2新样式作用于部分内容：
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.2.2.png)
 ```
 SpannableString styleSpan = SpanBuilder.getStyleSpan(
                         "在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n",

@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 2.1 一次生成合体
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("\n↓↓↓↓↓↓下面这个是用法2之混合样式↓↓↓↓↓↓\n", Color.RED));
-        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("\n1.一次生成混合体\n", Color.GREEN));
-        spanBuilder.append(SpanBuilder.getSpan("一次生成混合体，设置了红色字体、删除线、斜体加粗\n",
+        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("\n\n\n一次生成混合体\n", Color.GREEN));
+        spanBuilder.append(SpanBuilder.getSpan("一次生成混合体，设置了红色字体、删除线、斜体加粗\n\n\n\n\n\n\n",
                 new ForegroundColorSpan(Color.RED), new StrikethroughSpan(), new StyleSpan(Typeface.BOLD_ITALIC)));
 
 
@@ -86,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("2.在原来样式基础上添加生成混合体\n", Color.GREEN));
 
         // 2.2.1 新样式作用于所有
-        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  2.1----添加样式作用于全部----\n", Color.YELLOW));
-        SpannableString underLineSpan = SpanBuilder.getUnderLineSpan("在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n");
+        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  \n\n\n\n2.1----添加样式作用于全部----\n", Color.YELLOW));
+        SpannableString underLineSpan = SpanBuilder.getUnderLineSpan("在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n\n\n\n\n\n");
         SpanBuilder.addSpanStyleAll(underLineSpan, new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC));
         spanBuilder.append(underLineSpan);
 
         // 2.2.2 新样式作用于部分
-        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  2.2----添加样式作用于部分----\n", Color.YELLOW));
-        SpannableString styleSpan = SpanBuilder.getStyleSpan("在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n", Typeface.BOLD_ITALIC);
+        spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  \n\n\n\n2.2----添加样式作用于部分----\n", Color.YELLOW));
+        SpannableString styleSpan = SpanBuilder.getStyleSpan("在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n\n\n", Typeface.BOLD_ITALIC);
         SpanBuilder.addSpanStylePart(styleSpan, 1, 4, new ForegroundColorSpan(Color.RED),new BackgroundColorSpan(Color.GREEN), new ScaleXSpan(2.5f));
         spanBuilder.append(styleSpan);
         textView.setText(spanBuilder);
