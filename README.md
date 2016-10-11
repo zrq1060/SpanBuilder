@@ -15,14 +15,15 @@ SpanBuilder spanBuilder = new SpanBuilder()
     
 textView.setText(spanBuilder);
 ```  
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ##用法 2：拼接Span对象（单一样式、混合样式）
 ###2.1之单一样式：
-```     
-SpanBuilder spanBuilder = new SpanBuilder() 
+```
+SpanBuilder spanBuilder = new SpanBuilder()
     .append(SpanBuilder.getBackgroundColorSpan("这是背景颜色\n", Color.RED))
     .append(SpanBuilder.getUnderLineSpan("这是下划线\n"))
-    .append(SpanBuilder.getDeleteLineSpan("这是删除线\n"))                
-    .append(SpanBuilder.getUnderLabelSpan("下标", 12))               
+    .append(SpanBuilder.getDeleteLineSpan("这是删除线\n"))
+    .append(SpanBuilder.getUnderLabelSpan("下标", 12))
     .append(SpanBuilder.getUpLabelSpan("上标\n", 14))
     .append(SpanBuilder.getClickSpan("此内容可点击\n", textView, new ClickableSpan() {
         @Override
@@ -39,11 +40,11 @@ SpanBuilder spanBuilder = new SpanBuilder()
     .append(SpanBuilder.getTypefaceSpan("设置字体类型为serif\n", "serif"))
     .append(SpanBuilder.getQuoteSpan("设置此段前有垂直的蓝色引用线\n", Color.BLUE))
     .append(SpanBuilder.getTextAppearanceSpan("设置此字体自定义style样式\n", this, R.style.MyTextStyle))
-    .append(SpanBuilder.getTextColorSpan("设置字体的颜色为红色\n", Color.RED))                
+    .append(SpanBuilder.getTextColorSpan("设置字体的颜色为红色\n", Color.RED))
     .append(SpanBuilder.getImageSpan("此内容无效，会被图片给替换", drawable));
-    
+
 textView.setText(spanBuilder);
-                
+
 ```
 ###2.2之混合样式：（一次合成、在原来样式上添加）
 ####2.2.1一次合成：
@@ -52,16 +53,16 @@ SpannableString span =SpanBuilder.getSpan("一次生成混合体，设置了红�
                                 new ForegroundColorSpan(Color.RED),//字体红色
                                 new StrikethroughSpan(),//删除线
                                 new StyleSpan(Typeface.BOLD_ITALIC));//斜体加粗
-                                
+
 textView.setText(span);
-                
+
 ```
 ####2.2.2在原来样式上添加：（作用于全部、作用于部分内容）
 #####2.2.2.1新样式作用于全部内容：
 ```
 SpannableString underLineSpan = SpanBuilder.getUnderLineSpan(
                                                 "在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n");
-                                                
+
 // 在下划线样式的基础上添加，添加完后，TextView直接设置添加好的underLineSpan就OK
 SpanBuilder.addSpanStyleAll(underLineSpan, new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC));
 
@@ -72,13 +73,12 @@ textView.setText(underLineSpan);
 SpannableString styleSpan = SpanBuilder.getStyleSpan(
                         "在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n",
                         Typeface.BOLD_ITALIC);
-// 在粗斜体样式样式的基础上给[1,4)内容（即斜粗体）添加，添加完后，TextView直接设置添加好的styleSpan就OK          
+// 在粗斜体样式样式的基础上给[1,4)内容（即斜粗体）添加，添加完后，TextView直接设置添加好的styleSpan就OK
 SpanBuilder.addSpanStylePart(styleSpan, 1, 4,
                         new ForegroundColorSpan(Color.RED),//字体红色
                         new BackgroundColorSpan(Color.GREEN), //删除线
                         new ScaleXSpan(2.5f));//斜体加粗
-                        
+
 textView.setText(styleSpan);
-        
+
 ```
-        
