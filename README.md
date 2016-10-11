@@ -2,6 +2,7 @@
 生成各种样式的span
 # 使用说明：
 ##用法 1：拼接TextSetting对象,可设置某某内容字体大小、颜色
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ```
 SpanBuilder spanBuilder = new SpanBuilder()
     .append(new TextSetting("200", 32, Color.RED))
@@ -15,8 +16,6 @@ SpanBuilder spanBuilder = new SpanBuilder()
     
 textView.setText(spanBuilder);
 ```
-
-![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ##用法 2：拼接Span对象（单一样式、混合样式）
 ###2.1之单一样式：
 ```
