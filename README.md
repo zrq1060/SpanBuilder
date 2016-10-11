@@ -14,7 +14,8 @@ SpanBuilder spanBuilder = new SpanBuilder()
     .append(new TextSetting("内容\n", 18, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
     
 textView.setText(spanBuilder);
-```  
+```
+
 ![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ##用法 2：拼接Span对象（单一样式、混合样式）
 ###2.1之单一样式：
