@@ -98,5 +98,6 @@ public class MainActivity extends AppCompatActivity {
         SpanBuilder.addSpanStylePart(styleSpan, 1, 4, new ForegroundColorSpan(Color.RED),new BackgroundColorSpan(Color.GREEN), new ScaleXSpan(2.5f));
         spanBuilder.append(styleSpan);
         textView.setText(spanBuilder);
+
     }
 }
