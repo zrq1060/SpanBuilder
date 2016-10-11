@@ -86,3 +86,4 @@ SpanBuilder.addSpanStylePart(styleSpan, 1, 4,
 textView.setText(styleSpan);
 
 ```
+
