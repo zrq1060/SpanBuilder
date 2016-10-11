@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .append(new TextSetting("这是", 12, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
                 .append(new TextSetting("特殊的", 25, ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)))
                 .append(new TextSetting("内容\n", 18, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-                // 用法 2，拼接Span对象
+                // 用法 2之单一样式
                 .append(SpanBuilder.getBackgroundColorSpan("↑↑上面这个是用法1（内容、大小、颜色）\n↓↓↓↓↓↓下面这个是用法2之单一样式↓↓↓↓↓↓\n", Color.RED))
                 .append(SpanBuilder.getUnderLineSpan("这是下划线\n"))
                 .append(SpanBuilder.getDeleteLineSpan("这是删除线\n"))
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 .append(SpanBuilder.getImageSpan("此内容无效，会被图片给替换", drawable))
                 .append("前面这是一张图片\n");
 
-        // 用法 3，高级混合拼接
+        // 用法 2之混合样式（高级混合拼接）
 
-        // 3.1 一次生成合体
+        // 2.1 一次生成合体
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("\n↓↓↓↓↓↓下面这个是用法2之混合样式↓↓↓↓↓↓\n", Color.RED));
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("\n1.一次生成混合体\n", Color.GREEN));
         SpannableString span = SpanBuilder.getSpan("一次生成混合体，设置了红色字体、删除线、斜体加粗\n",
@@ -83,16 +83,16 @@ public class MainActivity extends AppCompatActivity {
         spanBuilder.append(span);
 
 
-        // 3.2 在原来span的基础上添加新的样式
+        // 2.2 在原来span的基础上添加新的样式
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("2.在原来样式基础上添加生成混合体\n", Color.GREEN));
 
-        // 3.2.1 新样式作用于所有
+        // 2.2.1 新样式作用于所有
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  2.1----添加样式作用于全部----\n", Color.YELLOW));
         SpannableString underLineSpan = SpanBuilder.getUnderLineSpan("在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n");
         SpanBuilder.addSpanStyleAll(underLineSpan, new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC));
         spanBuilder.append(underLineSpan);
 
-        // 3.2.1 新样式作用于部分
+        // 2.2.2 新样式作用于部分
         spanBuilder.append(SpanBuilder.getBackgroundColorSpan("  2.2----添加样式作用于部分----\n", Color.YELLOW));
         SpannableString styleSpan = SpanBuilder.getStyleSpan("在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n", Typeface.BOLD_ITALIC);
         SpanBuilder.addSpanStylePart(styleSpan, 1, 4, new ForegroundColorSpan(Color.RED),new BackgroundColorSpan(Color.GREEN), new ScaleXSpan(2.5f));
