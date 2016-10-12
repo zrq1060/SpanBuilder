@@ -1,89 +1,107 @@
 # SpanBuilder
 ##一个TextView可设置如下的效果
 # 使用说明：
-##用法 1：拼接TextSetting对象,可设置某某内容字体大小、颜色
+##常用效果：
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/0.png)
+```
+SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+spannableStringBuilder
+        .append(new SpanBuilder("8").setTextSize(45).setTextColor(Color.RED))
+        .append(new SpanBuilder(".88").setTextSize(28).setTextColor(Color.RED))
+        .append(new SpanBuilder("%\n").setTextSize(16).setTextColor(Color.BLACK));
+
+spannableStringBuilder
+        .append(new SpanBuilder("10").setTextSize(50).setTextColor(Color.RED).setTextStyle(Typeface.BOLD_ITALIC))
+        .append(new SpanBuilder("元\n").setTextSize(16).setTextColor(Color.BLACK));
+
+spannableStringBuilder
+        .append(new SpanBuilder("￥149").setTextSize(24).setTextColor(Color.RED))
+        .append(new SpanBuilder(".9  ").setTextSize(16).setTextColor(Color.RED))
+        .append(new SpanBuilder("￥259.00").setTextSize(20).setTextColor(Color.BLACK).setDeleteLine())
+        .append(new SpanBuilder("   4738").setTextSize(20).setTextColor(Color.RED))
+        .append(new SpanBuilder("件已售\n").setTextSize(20).setTextColor(Color.BLACK));
+
+textView.setText(spannableStringBuilder);
+
+```
+##用法 1之单一样式：
+
 ![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ```
-SpanBuilder spanBuilder = new SpanBuilder()
-    .append(new TextSetting("200", 32, Color.RED))
-    .append(new TextSetting("元\n", 20, Color.BLACK))
-    .append(new TextSetting("50", 34, Color.RED))
-    .append(new TextSetting(".88", 24, Color.RED))
-    .append(new TextSetting(" %\n", 16, Color.BLACK))
-    .append(new TextSetting("这是", 12, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-    .append(new TextSetting("特殊的", 25, ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)))
-    .append(new TextSetting("内容\n", 18, ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
+SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder()
+        .append(new SpanBuilder("字体30Sp\n").setTextSize(30))
+        .append(new SpanBuilder("字体红色\n").setTextColor(Color.RED))
+        .append(new SpanBuilder("字体背景绿色\n").setBackgroundColor(Color.GREEN))
+        .append(new SpanBuilder("粗斜体\n").setTextStyle(Typeface.BOLD_ITALIC))
+        .append(new SpanBuilder("自定义Style样式\n").
+                setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Small))
+        .append(new SpanBuilder("可点击\n").setClick(textView, new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                // ！！点击了内容，但是会触发TextView的点击事件
+                Toast.makeText(getApplicationContext(), "ClickSpan点击了", Toast.LENGTH_LONG).show();
+            }
+        }))
+        .append(new SpanBuilder("删除线\n").setDeleteLine())
+        .append(new SpanBuilder("下划线\n").setUnderLine())
+        .append(new SpanBuilder("此内容无效，会被图片给替换\n").setImage(drawable))
+        .append(new SpanBuilder("字体类型为serif\n").setTypeface("serif"))
+        .append(new SpanBuilder("设置蓝色的引用线\n").setQuote(Color.BLUE))
+        .append(new SpanBuilder("设置此内容的对齐方式为相反\n").setAlignment(Layout.Alignment.ALIGN_OPPOSITE))
+        .append(new SpanBuilder("设置字体大小为之前的1.2倍\n").setRelativeSize(1.2f))
+        .append("这是")
+        .append(new SpanBuilder("上标\n").setUpLabel())
+        .append("这是")
+        .append(new SpanBuilder("下标\n").setUnderLabel())
+        .append(new SpanBuilder("X轴缩放3倍\n").setScaleX(3f));
 
-textView.setText(spanBuilder);
-```
-##用法 2：拼接Span对象（单一样式、混合样式）
-###2.1之单一样式：
-![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.1.png)
-```
-SpanBuilder spanBuilder = new SpanBuilder()
-    .append(SpanBuilder.getBackgroundColorSpan("这是背景颜色\n", Color.RED))
-    .append(SpanBuilder.getUnderLineSpan("这是下划线\n"))
-    .append(SpanBuilder.getDeleteLineSpan("这是删除线\n"))
-    .append(SpanBuilder.getUnderLabelSpan("下标", 12))
-    .append(SpanBuilder.getUpLabelSpan("上标\n", 14))
-    .append(SpanBuilder.getClickSpan("此内容可点击\n", textView, new ClickableSpan() {
-        @Override
-        public void onClick(View widget) {
-            // ！！点击了内容，但是会触发TextView的点击事件
-            Toast.makeText(getApplicationContext(), "ClickSpan点击了", Toast.LENGTH_LONG).show();
-        }
-    }))
-    .append(SpanBuilder.getScaleXSpan("X轴缩放3倍\n", 3f))
-    .append(SpanBuilder.getAlignmentSpan("设置此内容的对齐方式为相反\n", Layout.Alignment.ALIGN_OPPOSITE))
-    .append(SpanBuilder.getStyleSpan("设置此字体为粗斜体\n", Typeface.BOLD_ITALIC))
-    .append(SpanBuilder.getRelativeSizeSpan("设置字体大小为之前的1.2倍\n", 1.2f))
-    .append(SpanBuilder.getAbsoluteSizeSpan("设置字体大小为30sp\n", 30))
-    .append(SpanBuilder.getTypefaceSpan("设置字体类型为serif\n", "serif"))
-    .append(SpanBuilder.getQuoteSpan("设置此段前有垂直的蓝色引用线\n", Color.BLUE))
-    .append(SpanBuilder.getTextAppearanceSpan("设置此字体自定义style样式\n", this, R.style.MyTextStyle))
-    .append(SpanBuilder.getTextColorSpan("设置字体的颜色为红色\n", Color.RED))
-    .append(SpanBuilder.getImageSpan("此内容无效，会被图片给替换", drawable));
-
-textView.setText(spanBuilder);
+textView.setText(spannableStringBuilder);
 
 ```
-###2.2之混合样式：（一次合成、在原来样式上添加）
-####2.2.1一次合成：
-![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.1.png)
+##用法 2之混合样式：
+
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.png)
 ```
-SpannableString span =SpanBuilder.getSpan("一次生成混合体，设置了红色字体、删除线、斜体加粗\n",
-                                new ForegroundColorSpan(Color.RED),//字体红色
-                                new StrikethroughSpan(),//删除线
-                                new StyleSpan(Typeface.BOLD_ITALIC));//斜体加粗
+SpanBuilder spanBuilder = new SpanBuilder("\n\n此为混合样式应用于部分,设置字体15sp、红色、背景绿色、粗斜体\n\n\n")
+        .setTextSize(15)
+        .setTextColor(Color.RED)
+        .setBackgroundColor(Color.GREEN)
+        .setTextStyle(Typeface.BOLD_ITALIC);
 
 textView.setText(span);
 
 ```
-####2.2.2在原来样式上添加：（作用于全部、作用于部分内容）
-#####2.2.2.1新样式作用于全部内容：
-![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.2.1.png)
+##用法 3之给混合样式部分内容添加（或替换）新样式：
+
+![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/3.png)
 ```
-SpannableString underLineSpan = SpanBuilder.getUnderLineSpan(
-                                                "在下划线样式的基础上，添加字体蓝色、斜体，新样式作用于全部内容\n");
+SpanBuilder oldSpan = new SpanBuilder("给混合样式部分内容添加（或替换）新样式,设置其为蓝色、背景红色\n")
+        .setTextSize(15)
+        .setTextColor(Color.RED)
+        .setBackgroundColor(Color.GREEN)
+        .setTextStyle(Typeface.BOLD_ITALIC);
 
-// 在下划线样式的基础上添加，添加完后，TextView直接设置添加好的underLineSpan就OK
-SpanBuilder.addSpanStyleAll(underLineSpan, new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC));
+// 新样式的容器
+SpanBuilder newSpanStyle = new SpanBuilder()
+        .setTextColor(Color.BLUE)
+        .setBackgroundColor(Color.RED);
+// newSpanStyle里面的样式会添加（或替换）原来oldSpan的样式
+oldSpan.addNewSpanStyle(5, 16, newSpanStyle);
 
-textView.setText(underLineSpan);
+textView.setText(oldSpan);
 ```
-#####2.2.2.2新样式作用于部分内容：
-![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/2.2.2.2.png)
+##用法 4之扩展：添加自定义样式
 ```
-SpannableString styleSpan = SpanBuilder.getStyleSpan(
-                        "在粗斜体样式的基础上给部分内容（斜粗体）添加红色、X轴缩放、背景绿色，新样式作用于部分内容\n",
-                        Typeface.BOLD_ITALIC);
-// 在粗斜体样式样式的基础上给[1,4)内容（即斜粗体）添加，添加完后，TextView直接设置添加好的styleSpan就OK
-SpanBuilder.addSpanStylePart(styleSpan, 1, 4,
-                        new ForegroundColorSpan(Color.RED),//字体红色
-                        new BackgroundColorSpan(Color.GREEN), //删除线
-                        new ScaleXSpan(2.5f));//斜体加粗
-
-textView.setText(styleSpan);
-
+// 4.1 作用于所有
+new SpanBuilder("X轴缩放3倍\n").setSpan(
+        new ForegroundColorSpan(Color.RED),//字体红色
+        new BackgroundColorSpan(Color.GREEN), //删除线
+        new ScaleXSpan(2.5f));
+// 4.1 作用于所有
+new SpanBuilder("X轴缩放3倍\n").setSpan(1, 5,
+        new ForegroundColorSpan(Color.RED),//字体红色
+        new BackgroundColorSpan(Color.GREEN), //删除线
+        new ScaleXSpan(2.5f));
+                
 ```
-
+        
