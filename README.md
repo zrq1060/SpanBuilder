@@ -93,12 +93,12 @@ textView.setText(oldSpan);
 ##用法 4之扩展：添加自定义样式
 ```
 // 4.1 作用于所有
-new SpanBuilder("X轴缩放3倍\n").setSpan(
+new SpanBuilder("X轴缩放3倍\n").setSpanAll(
         new ForegroundColorSpan(Color.RED),//字体红色
         new BackgroundColorSpan(Color.GREEN), //删除线
         new ScaleXSpan(2.5f));
-// 4.1 作用于所有
-new SpanBuilder("X轴缩放3倍\n").setSpan(1, 5,
+// 4.1 作用于部分
+new SpanBuilder("X轴缩放3倍\n").setSpanPart(1, 5,
         new ForegroundColorSpan(Color.RED),//字体红色
         new BackgroundColorSpan(Color.GREEN), //删除线
         new ScaleXSpan(2.5f));

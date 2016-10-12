@@ -50,7 +50,7 @@ public class SpanBuilder extends SpannableString {
      * @param size 设置字体大小（单位sp）
      */
     public SpanBuilder setTextSize(int size) {
-        setSpan(new AbsoluteSizeSpan(size, true));
+        setSpanAll(new AbsoluteSizeSpan(size, true));
         return this;
     }
 
@@ -60,7 +60,7 @@ public class SpanBuilder extends SpannableString {
      * @param color 字体颜色
      */
     public SpanBuilder setTextColor(int color) {
-        setSpan(new ForegroundColorSpan(color));
+        setSpanAll(new ForegroundColorSpan(color));
         return this;
     }
 
@@ -70,7 +70,7 @@ public class SpanBuilder extends SpannableString {
      * @param color 设置背景颜色
      */
     public SpanBuilder setBackgroundColor(int color) {
-        setSpan(new BackgroundColorSpan(color));
+        setSpanAll(new BackgroundColorSpan(color));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class SpanBuilder extends SpannableString {
      * @param style 设置字体类型    Typeface.BOLD_ITALIC,Typeface.BOLD,Typeface.ITALIC,Typeface.NORMAL
      */
     public SpanBuilder setTextStyle(int style) {
-        setSpan(new StyleSpan(style));
+        setSpanAll(new StyleSpan(style));
         return this;
     }
 
@@ -90,7 +90,7 @@ public class SpanBuilder extends SpannableString {
      * @param styleId 设置style样式的id
      */
     public SpanBuilder setTextAppearance(Context context, int styleId) {
-        setSpan(new TextAppearanceSpan(context, styleId));
+        setSpanAll(new TextAppearanceSpan(context, styleId));
         return this;
     }
 
@@ -109,7 +109,7 @@ public class SpanBuilder extends SpannableString {
             textView.setMovementMethod(LinkMovementMethod.getInstance());
             textView.setHighlightColor(Color.GREEN);
         }
-        setSpan(clickableSpan);
+        setSpanAll(clickableSpan);
         return this;
     }
 
@@ -117,7 +117,7 @@ public class SpanBuilder extends SpannableString {
      * 设置带有<font color="#ff0000" size="4"> 删除线 </font>的元素
      */
     public SpanBuilder setDeleteLine() {
-        setSpan(new StrikethroughSpan());
+        setSpanAll(new StrikethroughSpan());
         return this;
     }
 
@@ -125,7 +125,7 @@ public class SpanBuilder extends SpannableString {
      * 设置带有<font color="#ff0000" size="4"> 下划线 </font>的元素
      */
     public SpanBuilder setUnderLine() {
-        setSpan(new UnderlineSpan());
+        setSpanAll(new UnderlineSpan());
         return this;
     }
 
@@ -135,7 +135,7 @@ public class SpanBuilder extends SpannableString {
      * @param drawable 设置drawable
      */
     public SpanBuilder setImage(Drawable drawable) {
-        setSpan(new ImageSpan(drawable));
+        setSpanAll(new ImageSpan(drawable));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class SpanBuilder extends SpannableString {
      * @param family 设置字体类型 "monospace", "serif", and "sans-serif".
      */
     public SpanBuilder setTypeface(String family) {
-        setSpan(new TypefaceSpan(family));
+        setSpanAll(new TypefaceSpan(family));
         return this;
     }
 
@@ -156,7 +156,7 @@ public class SpanBuilder extends SpannableString {
      * @param color 设置垂直的引用线的颜色
      */
     public SpanBuilder setQuote(int color) {
-        setSpan(new QuoteSpan(color));
+        setSpanAll(new QuoteSpan(color));
         return this;
     }
 
@@ -166,7 +166,7 @@ public class SpanBuilder extends SpannableString {
      * @param align 设置对其方式    ALIGN_NORMAL,    ALIGN_OPPOSITE,    ALIGN_CENTER,
      */
     public SpanBuilder setAlignment(Layout.Alignment align) {
-        setSpan(new AlignmentSpan.Standard(align));
+        setSpanAll(new AlignmentSpan.Standard(align));
         return this;
     }
 
@@ -176,7 +176,7 @@ public class SpanBuilder extends SpannableString {
      * @param proportion 设置相对textSize的比例大小
      */
     public SpanBuilder setRelativeSize(float proportion) {
-        setSpan(new RelativeSizeSpan(proportion));
+        setSpanAll(new RelativeSizeSpan(proportion));
         return this;
     }
 
@@ -184,7 +184,7 @@ public class SpanBuilder extends SpannableString {
      * 设置带有<font color="#ff0000" size="4"> 上标 </font>的元素
      */
     public SpanBuilder setUpLabel() {
-        setSpan(new SuperscriptSpan());
+        setSpanAll(new SuperscriptSpan());
         return this;
     }
 
@@ -192,7 +192,7 @@ public class SpanBuilder extends SpannableString {
      * 设置带有<font color="#ff0000" size="4"> 下标 </font>的元素
      */
     public SpanBuilder setUnderLabel() {
-        setSpan(new SubscriptSpan());
+        setSpanAll(new SubscriptSpan());
         return this;
     }
 
@@ -202,7 +202,7 @@ public class SpanBuilder extends SpannableString {
      * @param proportion 缩放的倍数
      */
     public SpanBuilder setScaleX(float proportion) {
-        setSpan(new ScaleXSpan(proportion));
+        setSpanAll(new ScaleXSpan(proportion));
         return this;
     }
 
@@ -210,8 +210,8 @@ public class SpanBuilder extends SpannableString {
     /**
      * 设置样式-作用于全部
      */
-    public void setSpan(Object... spans) {
-        setSpan(0, length(), spans);
+    public void setSpanAll(Object... spans) {
+        setSpanPart(0, length(), spans);
     }
 
     /**
@@ -263,7 +263,7 @@ public class SpanBuilder extends SpannableString {
      *              LineHeightSpan <br/>
      *              IconMarginSpan <br/>
      */
-    public SpanBuilder setSpan(int start, int end, Object... spans) {
+    public SpanBuilder setSpanPart(int start, int end, Object... spans) {
         if (start > end || spans == null
                 || spans.length == 0)
             return this;
