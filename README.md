@@ -104,4 +104,16 @@ new SpanBuilder("X轴缩放3倍\n").setSpanPart(1, 5,
         new ScaleXSpan(2.5f));
                 
 ```
+
+##使用 
+### Android studio 
+```
+compile 'com.zrq:spanbuilder:1.0.1'
+  
+```
+### Eclipse
+```
+导入app/libs/spanbuilder-1.0.1.jar
+  
+```
         
