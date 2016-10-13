@@ -5,12 +5,12 @@
 ##导入
 ### Android studio 
 ```
-compile 'com.zrq:spanbuilder:1.0.1'
+compile 'com.zrq:spanbuilder:1.0.2'
   
 ```
 ### Eclipse
 ```
-导入app/libs/spanbuilder-1.0.1.jar
+导入app/libs/spanbuilder-1.0.2.jar
   
 ```
 
@@ -119,6 +119,12 @@ new SpanBuilder("X轴缩放3倍\n").setSpanPart(1, 5,
         new ScaleXSpan(2.5f));
                 
 ```
+
+#####联系我：
+
+QQ：273902141
+
+邮箱：zrq1060@163.com
 
 
         
