@@ -1,6 +1,19 @@
 # SpanBuilder
 ##一个TextView可设置如下的效果
 # 使用说明：
+
+##导入
+### Android studio 
+```
+compile 'com.zrq:spanbuilder:1.0.1'
+  
+```
+### Eclipse
+```
+导入app/libs/spanbuilder-1.0.1.jar
+  
+```
+
 ##常用效果：
 ![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/0.png)
 ```
@@ -105,15 +118,5 @@ new SpanBuilder("X轴缩放3倍\n").setSpanPart(1, 5,
                 
 ```
 
-##使用 
-### Android studio 
-```
-compile 'com.zrq:spanbuilder:1.0.1'
-  
-```
-### Eclipse
-```
-导入app/libs/spanbuilder-1.0.1.jar
-  
-```
+
         
