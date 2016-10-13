@@ -79,7 +79,7 @@ public class SpanBuilder extends SpannableString {
      *
      * @param style 设置字体类型    Typeface.BOLD_ITALIC,Typeface.BOLD,Typeface.ITALIC,Typeface.NORMAL
      */
-    public SpanBuilder setTextStyle(int style) {
+    public SpanBuilder setTypeface(int style) {
         setSpanAll(new StyleSpan(style));
         return this;
     }
@@ -142,9 +142,9 @@ public class SpanBuilder extends SpannableString {
     /**
      * 设置带有<font color="#ff0000" size="4"> 字体类型 </font>的元素
      *
-     * @param family 设置字体类型 "monospace", "serif", and "sans-serif".
+     * @param family 设置字体类型 "monospace", "serif", and "sans-serif"等
      */
-    public SpanBuilder setTypeface(String family) {
+    public SpanBuilder setFontFamily(String family) {
         setSpanAll(new TypefaceSpan(family));
         return this;
     }

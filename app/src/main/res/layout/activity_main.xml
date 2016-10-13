@@ -12,5 +12,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:fontFamily="sans-serif-condensed"
         android:textSize="20sp" />
 </ScrollView>
