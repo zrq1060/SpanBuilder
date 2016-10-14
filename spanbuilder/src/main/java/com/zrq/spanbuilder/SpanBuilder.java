@@ -2,6 +2,7 @@ package com.zrq.spanbuilder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.SpannableString;
@@ -37,9 +38,24 @@ import android.widget.TextView;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class SpanBuilder extends SpannableString {
 
+    /**
+     * @param source 设置的内容，作用于所有
+     */
     public SpanBuilder(CharSequence source) {
         super(source);
     }
+
+    /**
+     * @param source    设置的内容，作用于所有
+     * @param textSize  设置字体大小，单位sp
+     * @param textColor 设置字体颜色
+     */
+    public SpanBuilder(CharSequence source, int textSize, int textColor) {
+        super(source);
+        setTextSize(textSize);
+        setTextColor(textColor);
+    }
+
     public SpanBuilder() {
         super("");
     }
@@ -77,10 +93,20 @@ public class SpanBuilder extends SpannableString {
     /**
      * 设置带有<font color="#ff0000" size="4"> 字体类型 </font>的元素
      *
-     * @param style 设置字体类型    Typeface.BOLD_ITALIC,Typeface.BOLD,Typeface.ITALIC,Typeface.NORMAL
+     * @param style 设置字体类型    粗斜体：BOLD_ITALIC，粗体：BOLD，斜体：ITALIC，正常：NORMAL
      */
     public SpanBuilder setTypeface(int style) {
         setSpanAll(new StyleSpan(style));
+        return this;
+    }
+
+    /**
+     * 设置带有<font color="#ff0000" size="4"> 自定义的字体类型 </font>的元素
+     *
+     * @param typeface 设置字体类型
+     */
+    public SpanBuilder setTypeface(Typeface typeface) {
+        setSpanAll(new CustomTypefaceSpan(typeface));
         return this;
     }
 
@@ -210,8 +236,8 @@ public class SpanBuilder extends SpannableString {
     /**
      * 设置样式-作用于全部
      */
-    public void setSpanAll(Object... spans) {
-        setSpanPart(0, length(), spans);
+    public SpanBuilder setSpanAll(Object... spans) {
+        return setSpanPart(0, length(), spans);
     }
 
     /**
