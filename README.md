@@ -45,7 +45,7 @@ spannableStringBuilder
 textView.setText(spannableStringBuilder);
 
 ```
-##用法 1之单一样式：
+##用法 1之单个样式：
 
 ![image](https://github.com/zrq1060/SpanBuilderDemo/blob/master/screenshots/1.png)
 ```
