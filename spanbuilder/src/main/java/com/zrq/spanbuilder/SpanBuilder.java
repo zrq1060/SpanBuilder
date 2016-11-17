@@ -133,7 +133,7 @@ public class SpanBuilder extends SpannableString {
     public SpanBuilder setClick(TextView textView, ClickableSpan clickableSpan) {
         if (textView != null) {
             textView.setMovementMethod(LinkMovementMethod.getInstance());
-            textView.setHighlightColor(Color.GREEN);
+            textView.setHighlightColor(Color.TRANSPARENT);
         }
         setSpanAll(clickableSpan);
         return this;
@@ -234,19 +234,19 @@ public class SpanBuilder extends SpannableString {
 
 
     /**
-     * 设置样式-作用于全部
+     * 设置样式-作用于text全部 详情看setSpanPart方法
      */
     public SpanBuilder setSpanAll(Object... spans) {
         return setSpanPart(0, length(), spans);
     }
 
     /**
-     * 设置样式-作用于start到end的位置
+     * 设置样式-作用于text文本start到end的位置
      *
      * @param start 从此位置开始设置样式
      * @param end   从此位置结束设置样式
      * @param spans 样式如下：（如此参数为空或无，则此内容不设置样式）<br/>
-     *              本类封装的Span <br/>
+     *              ----------------------------------本类封装的Span------------------------- <br/>
      *              AlignmentSpan.Standard 对齐方式 <br/>
      *              StyleSpan 字体样式：粗体、斜体等 <br/>
      *              UnderlineSpan 下划线 <br/>
@@ -263,7 +263,7 @@ public class SpanBuilder extends SpannableString {
      *              ClickableSpan （子类：URLSpan） 文本可点击，有点击事件，但是会调用TextView的点击事件 <br/>
      *              ImageSpan 放置一张图片 <br/>
      *              <p>
-     *              本类未封装的Span <br/>
+     *              ---------------------------------本类未封装的Span------------------------- <br/>
      *              NoCopySpan <br/>
      *              ParcelableSpan <br/>
      *              SuggestionSpan <br/>
@@ -301,6 +301,13 @@ public class SpanBuilder extends SpannableString {
         return this;
     }
 
+    /**
+     * 给原有样式增加（替换）新样式,7.0覆盖字体上发现问题，慎用
+     *
+     * @param start        作用于text文本的开始位置
+     * @param end          作用于text文本的结束位置
+     * @param newSpanStyle 新文本样式的集合体用SpanBuilder承载
+     */
     public void addNewSpanStyle(int start, int end, SpanBuilder newSpanStyle) {
         if (start > end || newSpanStyle == null)
             return;
@@ -312,6 +319,22 @@ public class SpanBuilder extends SpannableString {
             if (span == null)
                 continue;
             super.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+    }
+
+    /**
+     * 移除某一类型的样式
+     *
+     * @param kind 移除哪一类型的span
+     */
+    private void removeOldSpan(Class kind) {
+        Object[] spans = this.getSpans(0, length(), kind);
+        if (spans == null || spans.length == 0)
+            return;
+        for (Object span : spans) {
+            if (span == null)
+                continue;
+            super.removeSpan(span);
         }
     }
 }
