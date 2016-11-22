@@ -68,11 +68,18 @@ public class Spans extends SpannableStringBuilder {
     }
 
     /**
+     * 在原来spans的基础上拼接
+     */
+    public static Builder builder(Spans spans) {
+        return new Builder(spans);
+    }
+
+    /**
      * 构建者模式拼接Spans
      */
     public static class Builder {
 
-        private SpanBuilder spanBuilder=new SpanBuilder();
+        private SpanBuilder spanBuilder = new SpanBuilder();
         private Spans spans = new Spans();
 
         public Builder() {
@@ -81,6 +88,11 @@ public class Spans extends SpannableStringBuilder {
         public Builder(SpanBuilder spanBuilder) {
             this.spanBuilder = spanBuilder;
         }
+
+        public Builder(Spans spans) {
+            this.spans = spans;
+        }
+
         /**
          * 设置需要改变样式的内容
          *
@@ -89,6 +101,18 @@ public class Spans extends SpannableStringBuilder {
         public Builder text(CharSequence text) {
             appendOld();// 拼接上一个
             this.spanBuilder = new SpanBuilder(text);
+            return this;
+        }
+
+        /**
+         * @param text      设置的内容，作用于所有
+         * @param textSize  设置字体大小，单位sp
+         * @param textColor 设置字体颜色
+         */
+        public Builder text(CharSequence text, int textSize, int textColor) {
+            text(text);
+            size(textSize);
+            color(textColor);
             return this;
         }
 
@@ -109,6 +133,7 @@ public class Spans extends SpannableStringBuilder {
                 this.spans.append(this.spanBuilder);
             }
         }
+
         /**
          * 设置字体大小
          *
@@ -274,6 +299,26 @@ public class Spans extends SpannableStringBuilder {
          */
         public Builder scaleX(float proportion) {
             this.spanBuilder.setScaleX(proportion);
+            return this;
+        }
+
+        /**
+         * 创建新样式-作用于text全部
+         *
+         * @see SpanBuilder#setSpanAll(java.lang.Object...)
+         */
+        public Builder newSpanAll(Object... spans) {
+            this.spanBuilder.setSpanAll(spans);
+            return this;
+        }
+
+        /**
+         * 创建新样式-作用于text文本start到end的位置
+         *
+         * @see SpanBuilder#setSpanPart(int, int, java.lang.Object...)
+         */
+        public Builder newSpanPart(int start, int end, Object... spans) {
+            this.spanBuilder.setSpanPart(start, end, spans);
             return this;
         }
     }

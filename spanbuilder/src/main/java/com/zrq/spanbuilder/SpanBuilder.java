@@ -92,6 +92,7 @@ public class SpanBuilder extends SpannableString {
 
     /**
      * 已过时
+     *
      * @see SpanBuilder#setTextStyle(int)
      */
     @Deprecated
@@ -104,9 +105,17 @@ public class SpanBuilder extends SpannableString {
      *
      * @param style 设置字体类型    粗斜体：BOLD_ITALIC，粗体：BOLD，斜体：ITALIC，正常：NORMAL
      */
+    @Deprecated
     public SpanBuilder setTextStyle(int style) {
         setSpanAll(new StyleSpan(style));
         return this;
+    }
+
+    /**
+     * @see SpanBuilder#setTextStyle(int)
+     */
+    public SpanBuilder setTextStyle(TextStyle style) {
+        return setTextStyle(style.ordinal());
     }
 
     /**
@@ -242,7 +251,9 @@ public class SpanBuilder extends SpannableString {
 
 
     /**
-     * 设置样式-作用于text全部 详情看setSpanPart方法
+     * 设置样式-作用于text全部
+     *
+     * @see SpanBuilder#setSpanPart(int, int, java.lang.Object...)
      */
     public SpanBuilder setSpanAll(Object... spans) {
         return setSpanPart(0, length(), spans);

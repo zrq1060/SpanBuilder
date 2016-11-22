@@ -5,20 +5,12 @@ package com.zrq.spanbuilder;
  */
 
 public enum TextStyle {
-    /**
-     * 正常
-     */
+    /** 正常 */
     NORMAL,
-    /**
-     * 粗体
-     */
+    /** 粗体 */
     BOLD,
-    /**
-     * 斜体
-     */
+    /** 斜体 */
     ITALIC,
-    /**
-     * 粗斜体
-     */
+    /** 粗斜体 */
     BOLD_ITALIC
 }
