@@ -91,11 +91,20 @@ public class SpanBuilder extends SpannableString {
     }
 
     /**
+     * 已过时
+     * @see SpanBuilder#setTextStyle(int)
+     */
+    @Deprecated
+    public SpanBuilder setTypeface(int style) {
+        return setTextStyle(style);
+    }
+
+    /**
      * 设置带有<font color="#ff0000" size="4"> 字体类型 </font>的元素
      *
      * @param style 设置字体类型    粗斜体：BOLD_ITALIC，粗体：BOLD，斜体：ITALIC，正常：NORMAL
      */
-    public SpanBuilder setTypeface(int style) {
+    public SpanBuilder setTextStyle(int style) {
         setSpanAll(new StyleSpan(style));
         return this;
     }
@@ -174,7 +183,6 @@ public class SpanBuilder extends SpannableString {
         setSpanAll(new TypefaceSpan(family));
         return this;
     }
-
 
     /**
      * 设置带有<font color="#ff0000" size="4"> 垂直的引用线 </font>的元素

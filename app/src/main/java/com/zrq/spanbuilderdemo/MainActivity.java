@@ -9,7 +9,7 @@ import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
 import com.zrq.spanbuilder.SpanBuilder;
-import com.zrq.spanbuilder.SpanStyle;
+import com.zrq.spanbuilder.TextStyle;
 import com.zrq.spanbuilder.Spanner;
 import com.zrq.spanbuilder.Spans;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 复杂样式：用SpanBuilder生成
         textView2.setText(new Spanner.Builder()
-                .text("10").size(50).color(Color.RED).style(SpanStyle.BOLD)
+                .text("10").size(50).color(Color.RED).style(TextStyle.BOLD)
                 .text("元")
                 .build()
         );
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 .text("￥149").size(24).color(Color.RED)
                 .text(".9  ").size(16).color(Color.RED)
                 .text("￥259.00").size(20).color(Color.BLACK).deleteLine()
-                .text("   4738").size(20).color(Color.RED).styles(new SpanStyle[]{SpanStyle.BOLD, SpanStyle.ITALIC})
+                .text("   4738").size(20).color(Color.RED).style(TextStyle.BOLD_ITALIC)
                 .text("件已售").size(20).color(Color.BLACK)
                 .build()
         );
