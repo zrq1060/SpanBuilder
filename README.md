@@ -5,12 +5,12 @@
 ##导入
 ### Android studio 
 ```
-compile 'com.zrq:spanbuilder:1.0.4'
+compile 'com.zrq:spanbuilder:1.0.5'
   
 ```
 ### Eclipse
 ```
-导入app/libs/spanbuilder-1.0.4.jar
+导入app/libs/spanbuilder-1.0.5.jar
   
 ```
 
