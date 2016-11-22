@@ -9,9 +9,8 @@ import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
 import com.zrq.spanbuilder.SpanBuilder;
-import com.zrq.spanbuilder.TextStyle;
-import com.zrq.spanbuilder.Spanner;
 import com.zrq.spanbuilder.Spans;
+import com.zrq.spanbuilder.TextStyle;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //简单样式: 统一风格
-        Spanner.create().text("8").size(28).color(Color.RED).build();
+        Spans.builder().text("8").size(28).color(Color.RED).build();
 
 
         // 简单样式：只改变字体大小、颜色；
-        textView1.setText(new Spanner.Builder()
+        textView1.setText(new Spans.Builder()
                 .text("8")
                 .text(".88").size(28).color(Color.RED)
                 .text("%").size(16).color(Color.BLACK)
@@ -44,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // 复杂样式：用SpanBuilder生成
-        textView2.setText(new Spanner.Builder()
+        textView2.setText(new Spans.Builder()
                 .text("10").size(50).color(Color.RED).style(TextStyle.BOLD)
                 .text("元")
                 .build()
         );
 
-        textView3.setText(new Spanner.Builder()
+        textView3.setText(new Spans.Builder()
                 .text("￥149").size(24).color(Color.RED)
                 .text(".9  ").size(16).color(Color.RED)
                 .text("￥259.00").size(20).color(Color.BLACK).deleteLine()
