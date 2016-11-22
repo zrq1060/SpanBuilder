@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 .text("控件样式").build());   // ←样式依赖于控件
 
 
-//  2.2扩展效果方法使用（可用于自定义样式，详细说明请看setSpanPart方法注释）：
+//  2.2扩展效果方法使用（可用于自定义样式，详细说明请看方法注释）：
         // 1 样式作用于内容所有
         Spans spans1 = Spans.builder()
                 .text("自定义样式作用于内容所有\n")
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 .newSpanAll(new BackgroundColorSpan(Color.RED), new UnderlineSpan())        // ←自定义样式
                 .color(Color.BLUE).build();
         // 2 样式作用于内容部分，即作用于5-8之间的内容
-        Spans spans2 = Spans.builder(spans1)
+        Spans spans2 = Spans.builder(spans1)// 在spans1的基础上拼接
                 .text("自定义样式作用于内容部分")
                 .size(20)
                 .newSpanPart(5, 8, new BackgroundColorSpan(Color.RED), new UnderlineSpan()) // ←自定义样式
