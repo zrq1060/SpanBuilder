@@ -9,7 +9,9 @@ import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
 import com.zrq.spanbuilder.SpanBuilder;
+import com.zrq.spanbuilder.Spanner;
 import com.zrq.spanbuilder.Spans;
+import com.zrq.spanbuilder.enums.Bold;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,23 +31,33 @@ public class MainActivity extends AppCompatActivity {
         // 3.Color.RED;
 
 
+        //简单样式: 统一风格
+        Spanner.create().text("8").size(28).color(Color.RED).build().text();
+
+
         // 简单样式：只改变字体大小、颜色；
-        textView1.setText(new Spans()
-                .append("8")                    // ←样式依赖于控件
-                .append(".88", 28, Color.RED)   // ←简单样式
-                .append("%", 16, Color.BLACK)); // ←简单样式
+        textView1.setText(new Spanner.Builder()
+                .text("8")
+                .text(".88").size(28).color(Color.RED)
+                .text("%").size(16).color(Color.BLACK)
+                .build().text()
+        );
 
         // 复杂样式：用SpanBuilder生成
-        textView2.setText(new Spans()
-                .append(new SpanBuilder("10", 50, Color.RED).setTypeface(Typeface.BOLD))// ←复杂样式：用SpanBuilder生成
-                .append("元"));                  // ←样式依赖于控件
+        textView2.setText(new Spanner.Builder()
+                .text("10").size(50).color(Color.RED).bold(Bold.BOLD)
+                .text("元")
+                .build().text()
+        );
 
-        textView3.setText(new Spans()
-                .append("￥149", 24, Color.RED)  // ←简单样式
-                .append(".9  ", 16, Color.RED)  // ←简单样式
-                .append(new SpanBuilder("￥259.00", 20, Color.BLACK).setDeleteLine())//←复杂样式：用SpanBuilder生成
-                .append("   4738", 20, Color.RED)   // ←简单样式
-                .append("件已售", 20, Color.BLACK));// ←简单样式
+        textView3.setText(new Spanner.Builder()
+                .text("￥149").size(24).color(Color.RED)
+                .text(".9  ").size(16).color(Color.RED)
+                .text("￥259.00").size(20).color(Color.BLACK).deleteLine()
+                .text("   4738").size(20).color(Color.RED).bold(Bold.BOLD_ITALIC)
+                .text("件已售").size(20).color(Color.BLACK)
+                .build().text()
+        );
 //  SpanBuilder说明
 //  1.方法介绍：
 //  1.内置的效果方法：
