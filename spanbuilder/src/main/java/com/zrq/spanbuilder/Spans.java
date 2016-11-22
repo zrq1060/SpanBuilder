@@ -81,7 +81,34 @@ public class Spans extends SpannableStringBuilder {
         public Builder(SpanBuilder spanBuilder) {
             this.spanBuilder = spanBuilder;
         }
+        /**
+         * 设置需要改变样式的内容
+         *
+         * @param text 内容
+         */
+        public Builder text(CharSequence text) {
+            appendOld();// 拼接上一个
+            this.spanBuilder = new SpanBuilder(text);
+            return this;
+        }
 
+        /**
+         * 生成拼接好的Spans
+         */
+        public Spans build() {
+            appendOld();// 拼接上一个
+            return this.spans;
+        }
+
+        /**
+         * 拼接上一个spanBuilder
+         */
+        private void appendOld() {
+            if (this.spanBuilder.length() != 0) {
+                // 无内容即无样式，不增加；有内容，增加，增加的是前一个的样式
+                this.spans.append(this.spanBuilder);
+            }
+        }
         /**
          * 设置字体大小
          *
@@ -248,35 +275,6 @@ public class Spans extends SpannableStringBuilder {
         public Builder scaleX(float proportion) {
             this.spanBuilder.setScaleX(proportion);
             return this;
-        }
-
-        /**
-         * 设置需要改变样式的内容
-         *
-         * @param text 内容
-         */
-        public Builder text(CharSequence text) {
-            appendOld();// 拼接上一个
-            this.spanBuilder = new SpanBuilder(text);
-            return this;
-        }
-
-        /**
-         * 生成拼接好的Spans
-         */
-        public Spans build() {
-            appendOld();// 拼接上一个
-            return this.spans;
-        }
-
-        /**
-         * 拼接上一个spanBuilder
-         */
-        private void appendOld() {
-            if (this.spanBuilder.length() != 0) {
-                // 无内容即无样式，不增加；有内容，增加，增加的是前一个的样式
-                this.spans.append(this.spanBuilder);
-            }
         }
     }
 }
