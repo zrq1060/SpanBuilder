@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.zrq.spanbuilderdemo"
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 16
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -19,8 +18,8 @@ android {
 }
 
 dependencies {
-//    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile project(':spanbuilder')//此为依赖库使用，为了自己用，你要用的话用如下注释方法
-//    compile 'com.zrq:spanbuilder:1.0.5'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation project(':spanbuilder')//此为依赖库使用，为了自己用，你要用的话用如下注释方法
+//    implementation 'com.zrq:spanbuilder:1.0.5'
 }
