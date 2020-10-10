@@ -8,14 +8,15 @@
 ## Demo
 
 ### 下载
+![qrcode](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/qrcode.jpg)
 
 ### 项目演示
 
 #### 常用效果
-<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/common.jpg" width="50%">
+<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/common.jpg" width="70%">
 
 #### 全部效果
-<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/all.jpg" width="50%">  
+<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/all.jpg" width="70%">  
 
 ## 简单使用
 
