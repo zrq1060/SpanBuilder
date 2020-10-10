@@ -8,7 +8,7 @@
 ## Demo
 
 ### 下载
-![qrcode](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/qrcode.jpg)
+![qrcode](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/qrcode.png)
 
 ### 项目演示
 
