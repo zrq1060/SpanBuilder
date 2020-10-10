@@ -10,9 +10,12 @@
 ### 下载
 
 ### 项目演示
-| 常用效果 | 全部效果 |
-| :--: | :--:|
-| ![Alt text](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/common.jpg)  | ![Alt text](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/all.jpg) |
+
+#### 常用效果
+<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/common.jpg" width="50%">
+
+#### 全部效果
+<img src="https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/all.jpg" width="50%">  
 
 ## 简单使用
 
@@ -20,6 +23,7 @@
 ```
 compile 'com.zrq:spanbuilder:1.0.5'
 ```
+
 ### 使用
 ```
 textView.setText(Spans.builder()
