@@ -262,8 +262,7 @@ class Span(source: CharSequence?) : SpannableString(source ?: "") {
      */
     @JvmOverloads
     fun setImage(drawable: Drawable, source: String? = null, verticalAlignment: Int = DynamicDrawableSpan.ALIGN_BOTTOM): Span {
-        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        setOneSpanAll(ImageSpan(drawable, source, verticalAlignment))
+        setOneSpanAll(if (source == null) ImageSpan(drawable, verticalAlignment) else ImageSpan(drawable, source, verticalAlignment))
         return this
     }
 

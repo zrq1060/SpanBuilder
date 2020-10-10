@@ -11,7 +11,7 @@
 
 ### 项目演示
 | 常用效果 | 全部效果 |
-| :-------- | :--:|
+| :--: | :--:|
 | ![Alt text](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/common.jpg)  | ![Alt text](https://github.com/zrq1060/SpanBuilder/blob/master/screenshots/all.jpg) |
 
 ## 简单使用
@@ -64,7 +64,7 @@ textView.setText(Spans.builder()
 | build()      		 |  |
 
 
-##联系我
+## 联系我
 QQ：273902141
 
 邮箱：zrq1060@163.com
