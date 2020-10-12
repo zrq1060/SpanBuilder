@@ -22,7 +22,7 @@
 
 ### 引入
 ```
-compile 'com.zrq:spanbuilder:1.1.0'
+compile 'com.zrq:spans:1.1.0'
 ```
 
 ### 使用

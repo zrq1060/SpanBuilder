@@ -37,6 +37,6 @@ publish {
     website = 'https://github.com/zrq1060/SpanBuilder'
 
     groupId = 'com.zrq'
-    artifactId = 'spanbuilder'
+    artifactId = 'spans'
     publishVersion = '1.1.0'
 }
