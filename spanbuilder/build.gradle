@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.panpf.bintray-publish'
+apply plugin: "com.vanniktech.maven.publish"
 
 android {
     compileSdkVersion 30
@@ -26,17 +26,4 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-publish {
-    userOrg = 'zrq'
-    repoName = "SpanBuilder"
-
-    uploadName = 'SpanBuilder'
-    desc = 'This is a span builder library'
-    website = 'https://github.com/zrq1060/SpanBuilder'
-
-    groupId = 'com.zrq'
-    artifactId = 'spans'
-    publishVersion = '1.1.0'
 }

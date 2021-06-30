@@ -20,6 +20,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation project(':spanbuilder')
+//    implementation project(':spanbuilder')
 //    implementation 'com.zrq:spans:1.1.0'
+    implementation 'io.github.zrq1060:spans:1.1.0'
 }

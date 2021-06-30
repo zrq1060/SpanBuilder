@@ -21,12 +21,25 @@
 ## 简单使用
 
 ### 引入
+
+project **build.gradle**
+
+```groovy
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
 ```
-compile 'com.zrq:spans:1.1.0'
+
+app **build.gradle**
+
+```groovy
+implementation 'io.github.zrq1060:spans:1.1.0'
 ```
 
 ### 使用
-```
+```java
 textView.setText(Spans.builder()
         .text("8")
         .text(".88").size(28).color(Color.RED)
